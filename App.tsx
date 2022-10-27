@@ -12,60 +12,50 @@ import {
 } from "react-native";
 import { RickAndMorty } from "./interfaces/RickAndMorty-interfaces";
 
+// 1. La ruta de la api es esta : https://rickandmortyapi.com/api/character
+// 2. Usar postman para probar la api
+// 3. crear la interfaces para la petición, si demoras más de dos 2 minutos en crearla usa la que viene en la importaciones,
+//   si lo haces en menos de 2 minutos puntos extras o no?
+// 4. Antes de asignar el SetData debes eliminar de la manera que consideres más
+//    apropiada las propiedades del objeto que está dentro de results: episode, location, origin.
+// 5. Debes usar un FlatList para mostrar las imágenes con el id y el texto concatenado. (recuerda crear el render antes de usar el flatlist).
+// 6. El estilo del texto debe ser en línea con estos valores:
+//    {textAlign: "center", color: 'black', fontSize: 22, fontWeight: "bold" , backgroundColor: "orange"}.
+// 7. Por último intenta usar todos los componentes que están dentro de la importación de react-native
+//    aunque si tienes el mismo resultado de otra manera también es válido.
+// 8. puntos extras si no tienes errores del lado de typescript
+//                    No olvides de preguntar lo que necesites, si tienes duda que para eso estamos.
+// Suerte.
+
 export default function App() {
   const [data, setData] = useState([]);
 
-  const peticion = async () => {
-    const resp = await axios
-      .get<RickAndMorty>("https://rickandmortyapi.com/api/character")
-      .then((response) => response.data.results);
-
-      for (const item of resp) {
-        delete item.episode;
-        delete item.location;
-        delete item.origin;
-      }  
-    setData(resp);
-  };
-
   useEffect(() => {
-    peticion();
-
-  
+    // llamar a la peticion
   }, []);
-  
 
-  const RenderItem = ({items}) => {
-    return (
-      <>
-        <SafeAreaView style={styles.container}>
-          <ScrollView style={styles.scrollView}>
-            <Image
-              style={{
-                height: 400,
-                width: 400
-              }}
-              source={{
-                uri: items.image,
-              }}
-            />
-            <Text style={{textAlign: "center", color: 'black', fontSize: 22, fontWeight: "bold" , backgroundColor: "orange"}}>{`${items.id} ${items.name}`}</Text>
-            {/* <Text>{items.name}</Text> */}
-          </ScrollView>
-        </SafeAreaView>
-      </>
-    );
+  const RenderItem = ({ items }) => {
+    return <></>;
   };
 
-
-  
   return (
+    // No toques este View
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={({item}) => <RenderItem items={item} />}
-        keyExtractor={(item) => item.id}
-      />
+
+      
+      {/* INICIO:  borrar*/}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
+        <Text style={{ textAlign: "center", backgroundColor: "orange" }}>
+          Suerte!!!
+        </Text>
+      </View>
+
+      {/* FIN:  borrar */}
     </View>
   );
 }
